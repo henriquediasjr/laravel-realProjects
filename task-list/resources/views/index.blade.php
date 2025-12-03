@@ -1,6 +1,15 @@
-Hello Im a blade template!
+<h1>
+    The list of tasks
+</h1>
 
-
-@isset($name)
-    <div>The name is {{ $name }} and the age is {{ $age }}</div>
-@endisset
+<div>
+    {{-- @if (count($tasks)) --}}
+    @forelse ($tasks as $task)
+        <div>
+            <a href="{{ route('tasks.show', ['id' => $task->id]) }}">{{ $task->title }}</a>
+        </div>
+    @empty
+        <div>There are no tasks!</div>
+    @endforelse
+    {{-- @endif --}}
+</div>
